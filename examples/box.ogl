@@ -1,0 +1,136 @@
+width = 400
+height = 400
+name = The Box
+
+
+idle: # Called when no events are pending.
+
+	$Xangle = $Xangle + 2.0;
+	$Yangle = $Yangle + 3.3;
+
+
+MAIN:
+
+	Init();
+  foreach (0,11)
+	   Display($_);
+
+Init:
+
+	$Sides = 5;
+	$MinSides = 3;
+	$MaxSides = 20;
+
+Display:
+
+	$Xangle = $1*15;
+	$Yangle = $1*15;
+
+
+	 Reshape();
+   $scale = 1.7;
+
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+   glPushMatrix();
+
+   glScalef($scale, $scale, $scale);
+   glRotatef($Xangle, 1.0, 0.0, 0.0);
+   glRotatef($Yangle, 0.0, 1.0, 0.0);
+
+   glColor3f(1.0, 1.0, 1.0);
+   glBegin(GL_LINE_LOOP);
+   glVertex3f(-1.0, -1.0, -1.0);
+   glVertex3f( 1.0, -1.0, -1.0);
+   glVertex3f( 1.0,  1.0, -1.0);
+   glVertex3f(-1.0,  1.0, -1.0);
+   glEnd();
+
+   glBegin(GL_LINE_LOOP);
+   glVertex3f(-1.0, -1.0, 1.0);
+   glVertex3f( 1.0, -1.0, 1.0);
+   glVertex3f( 1.0,  1.0, 1.0);
+   glVertex3f(-1.0,  1.0, 1.0);
+   glEnd();
+
+   glBegin(GL_LINES);
+   glVertex3f(-1.0, -1.0, -1.0);
+	 glVertex3f(-1.0, -1.0, 1.0);
+   glVertex3f( 1.0, -1.0, -1.0);
+   glVertex3f( 1.0, -1.0, 1.0);
+   glVertex3f( 1.0,  1.0, -1.0);
+   glVertex3f( 1.0,  1.0, 1.0);
+   glVertex3f(-1.0,  1.0, -1.0);
+   glVertex3f(-1.0,  1.0, 1.0);
+   glEnd();
+
+	 # Solid Box
+   glPushMatrix();
+   glScalef(0.75, 0.75, 0.75);
+
+   glColor3f(1, 0, 0);
+   glBegin(GL_POLYGON);
+   glVertex3f(1, -1, -1);
+   glVertex3f(1,  1, -1);
+   glVertex3f(1,  1,  1);
+   glVertex3f(1, -1,  1);
+   glEnd();
+
+   glColor3f(0, 1, 1);
+   glBegin(GL_POLYGON);
+   glVertex3f(-1, -1, -1);
+   glVertex3f(-1,  1, -1);
+   glVertex3f(-1,  1,  1);
+   glVertex3f(-1, -1,  1);
+   glEnd();
+
+   glColor3f(0, 1, 0);
+   glBegin(GL_POLYGON);
+   glVertex3f(-1, 1, -1);
+   glVertex3f( 1, 1, -1);
+   glVertex3f( 1, 1,  1);
+   glVertex3f(-1, 1,  1);
+   glEnd();
+
+   glColor3f(1, 0, 1);
+   glBegin(GL_POLYGON);
+   glVertex3f(-1, -1, -1);
+   glVertex3f( 1, -1, -1);
+   glVertex3f( 1, -1,  1);
+   glVertex3f(-1, -1,  1);
+   glEnd();
+
+   glColor3f(0, 0, 1);
+   glBegin(GL_POLYGON);
+   glVertex3f(-1, -1, 1);
+   glVertex3f( 1, -1, 1);
+   glVertex3f( 1,  1, 1);
+   glVertex3f(-1,  1, 1);
+   glEnd();
+
+   glColor3f(1, 1, 0);
+   glBegin(GL_POLYGON);
+   glVertex3f(-1, -1, -1);
+   glVertex3f( 1, -1, -1);
+   glVertex3f( 1,  1, -1);
+   glVertex3f(-1,  1, -1);
+   glEnd();
+   glPopMatrix();
+
+
+   glPopMatrix();
+
+   swapBuffers();
+
+
+Reshape:
+
+#   glViewport(0, 0, width, height);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   glFrustum(-1.0, 1.0, -1.0, 1.0, 3.0, 20.0);
+   glMatrixMode(GL_MODELVIEW);
+   glLoadIdentity();
+   glTranslatef(0.0, 0.0, -10.0);
+   glEnable(GL_DEPTH_TEST);
+

@@ -1,5 +1,7 @@
 #!/usr/bin/perl
-use lib qw(..);
+use strict;
+#use lib qw(..);
+use OpenGL;
 use OpenGL::Script;
 
 my $script=OpenGL::Script->new();
@@ -14,7 +16,10 @@ print "\n";
 #print join(',',%{$script})."\n";
 $script->Init({offScreen=>1,
 							 imageFile=>'example.jpg'});
+#$script->Init();
 $script->Run();
-$script->WriteJpeg('example.jpg');
+#$script->WriteJpeg('example.jpg');
 $script->Deinit();
+#glpMainLoop();
+while(<>){;} # control-D to quit
 

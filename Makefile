@@ -51,9 +51,9 @@ AR_STATIC_ARGS = cr
 NAME = OpenGL::Script
 DISTNAME = OpenGL-Script
 NAME_SYM = OpenGL_Script
-VERSION = 0.2
-VERSION_SYM = 0_2
-XS_VERSION = 0.2
+VERSION = 0.3
+VERSION_SYM = 0_3
+XS_VERSION = 0.3
 INST_BIN = blib/bin
 INST_EXE = blib/script
 INST_LIB = blib/lib
@@ -155,10 +155,13 @@ PERL_ARCHIVE =
 
 PERL_ARCHIVE_AFTER = 
 
-TO_INST_PM = Script.pm
+TO_INST_PM = Embed.pm \
+	Script.pm
 
 PM_TO_BLIB = Script.pm \
-	$(INST_LIBDIR)/Script.pm
+	$(INST_LIBDIR)/Script.pm \
+	Embed.pm \
+	$(INST_LIBDIR)/Embed.pm
 
 
 # --- MakeMaker tool_autosplit section:
@@ -399,7 +402,7 @@ clean ::
 # Delete temporary files (via clean) and also delete installed files
 realclean purge ::  clean
 	rm -rf $(INST_AUTODIR) $(INST_ARCHAUTODIR)
-	rm -f  $(INST_LIBDIR)/Script.pm
+	rm -f  $(INST_LIBDIR)/Script.pm $(INST_LIBDIR)/Embed.pm
 	rm -rf Makefile Makefile.old
 
 
@@ -641,7 +644,7 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd:
-	@$(PERL) -e "print qq{<SOFTPKG NAME=\"OpenGL-Script\" VERSION=\"0,2,0,0\">\n}. qq{\t<TITLE>OpenGL-Script</TITLE>\n}. qq{\t<ABSTRACT>OpenGL scripting</ABSTRACT>\n}. qq{\t<AUTHOR>Danil Pismenny &lt;dapi\@mail.ru&gt;</AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<DEPENDENCY NAME=\"Error\" VERSION=\"0,15,0,0\" />\n}. qq{\t\t<DEPENDENCY NAME=\"OpenGL\" VERSION=\"0,54,0,0\" />\n}. qq{\t\t<DEPENDENCY NAME=\"Time-HiRes\" VERSION=\"1,2,0,0\" />\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<ARCHITECTURE NAME=\"i686-linux\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > OpenGL-Script.ppd
+	@$(PERL) -e "print qq{<SOFTPKG NAME=\"OpenGL-Script\" VERSION=\"0,3,0,0\">\n}. qq{\t<TITLE>OpenGL-Script</TITLE>\n}. qq{\t<ABSTRACT>OpenGL scripting</ABSTRACT>\n}. qq{\t<AUTHOR>Danil Pismenny &lt;dapi\@mail.ru&gt;</AUTHOR>\n}. qq{\t<IMPLEMENTATION>\n}. qq{\t\t<DEPENDENCY NAME=\"Error\" VERSION=\"0,15,0,0\" />\n}. qq{\t\t<DEPENDENCY NAME=\"OpenGL\" VERSION=\"0,54,0,0\" />\n}. qq{\t\t<DEPENDENCY NAME=\"Time-HiRes\" VERSION=\"1,2,0,0\" />\n}. qq{\t\t<OS NAME=\"$(OSNAME)\" />\n}. qq{\t\t<ARCHITECTURE NAME=\"i686-linux\" />\n}. qq{\t\t<CODEBASE HREF=\"\" />\n}. qq{\t</IMPLEMENTATION>\n}. qq{</SOFTPKG>\n}" > OpenGL-Script.ppd
 
 # --- MakeMaker pm_to_blib section:
 
