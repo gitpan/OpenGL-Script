@@ -1,0 +1,15 @@
+\bCVS\b
+^c/
+^bak/
+~$
+bak$
+\.old$
+^blib/
+^MakeMaker-\d
+^pm_to_blib$
+^\.
+\.cvs
+\.update
+^\#
+tar.bz2*
+makedistr

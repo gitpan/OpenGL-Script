@@ -1,0 +1,43 @@
+ height	= 200
+ width	= 250
+ name	= The Cube
+
+Wirecube:
+  $s	= $1/2.0
+  @x	= (-$s, -$s, -$s, -$s, $s, $s, $s, $s )
+  @y	= (-$s, -$s, $s, $s, -$s, -$s, $s, $s )
+  @z	= (-$s, $s, $s, -$s, -$s, $s, $s, -$s )
+  @f	= (0, 1, 2, 3, 3, 2, 6, 7, 7, 6, 5, 4, 4, 5, 1, 0, 5, 6, 2, 1, 7, 4, 0, 3 )
+  foreach(0,5)
+	sub1($_)
+  glFlush()
+
+sub1:
+  glBegin(GL_LINE_LOOP)
+  foreach(0,3)
+	sub2($1, $_)
+  glEnd()
+
+sub2:
+  $k	= $f[$1*4+$2]
+  $x	= $x[$k]
+  $y	= $y[$k]
+  $z	= $z[$k]
+  glVertex3d($x, $y, $z)
+
+MAIN:
+  glShadeModel(GL_FLAT)
+#   MyReshape
+#   glViewport(0, 0, w, h)
+  glMatrixMode(GL_PROJECTION)
+  glLoadIdentity()
+  glFrustum(-1.0, 1.0, -1.0, 1.0, 1.5, 20.0)
+  glMatrixMode(GL_MODELVIEW)
+  glLoadIdentity()
+#   Display
+  glClear(GL_COLOR_BUFFER_BIT)
+  glColor3f(1.0, 1.0, 1.0)
+  glLoadIdentity() #    clear the matrix
+  glTranslatef(0.0, 0.0, -5.0) #    viewing transformation
+  glScalef(1.0, 2.0, 1.0) #    modeling transformation
+  Wirecube(1.0)

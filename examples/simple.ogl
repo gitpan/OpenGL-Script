@@ -1,0 +1,15 @@
+ height	= 400
+ width	= 400
+
+MAIN:
+  glClearColor(0, 0, 1, 1)
+  glClear(GL_COLOR_BUFFER_BIT)
+  glOrtho(-1, 1, -1, 1, -1, 1)
+  glColor3f(1, 0, 0)
+  glBegin(GL_POLYGON)
+  glVertex2f(-0.5, -0.5)
+  glVertex2f(-0.5, 0.5)
+  glVertex2f(0.5, 0.5)
+  glVertex2f(0.5, -0.5)
+  glEnd()
+  glFlush()

@@ -1,0 +1,14 @@
+MANIFEST
+MANIFEST.SKIP
+Makefile
+Makefile.PL
+Script.pm
+examples/clip.ogl
+examples/cube.ogl
+examples/demo.ogl
+examples/depth.ogl
+examples/example.pl
+examples/plane.ogl
+examples/simple.ogl
+examples/smooth.ogl
+t/dummy.t
